@@ -12,6 +12,29 @@ public:
     const int m_value;
     int m_x;
 
+    /// 일반 메서드에 인수로 전달된 const 변수의 특징
+    void normalFunction(const int* ptr__)
+    {
+        //memset();
+        //memcpy();
+    }
+
+    /// 멤버 함수를 const화 시켰을 때.
+    void constFunction(int y__) const
+    {
+        /// 멤버 함수의 상수화 ==> 멤버 변수를 상수화 시킨다.
+        /// 멤버 변수의 값 변경이 불가능 메서드
+        int x = 9;
+        const int const x1 = 10;
+        x = x * 100;
+        //  m_x = x + 100;
+    }
+
+    /// const를 함수에 사용할 때 뒤에 붙이는 이유
+    /// 반환 값인 int에 const 속성이 적용되는 사태가 발생.
+    const int func() {};
+
+
     /// 생성자와 소멸자는 반드시 public 접근 권한을 가져야 한다.
     ///     ==> 외부에서 생/소멸자를 호출하기 때문에 외부 접근이 가능!
 
@@ -49,7 +72,7 @@ private:
 
 int main()
 {
-    testClass t(3);
+    testClass t;
     /// const는 선언 즉시 초기화해야 한다.
     const int x = 9;
     std::cout << "Hello World!\n";
