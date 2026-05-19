@@ -70,7 +70,26 @@ int main()
         return -9;
     }
 
-    printf("READ: %s\n", buf);
+    printf("READ - 1: %s\n", buf);
+
+    pos.QuadPart = 100;
+    /// 파일 포인터를 처음 위치로 보낸다.
+    if (FALSE == fh.FilePointerBegin(pos))
+    {
+        return -9;
+    }
+
+    /// 버퍼 초기화
+    memset(buf, 0x00, BUFFER_LEN);
+    reqLen = 20;
+    /// 기록한 내용을 다시 읽어서 확인
+    if (FALSE == fh.FileRead(buf, reqLen, &reqResult))
+    {
+        return -9;
+    }
+
+    printf("READ - 2: %s\n", buf);
+
 
     /// 닫기
     fh.CloseFile();
